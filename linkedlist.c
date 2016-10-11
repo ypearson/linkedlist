@@ -14,9 +14,7 @@ int ll_new (llnode_t **ll_ptr, int data)
 }
 int ll_destroy (llnode_t **ll_ptr, int data)
 {
-    llnode_t  * ll_p = *ll_ptr;
-
-    while(ll_remove(ll_p) >=0);
+    while(ll_remove(ll_ptr) >=0);
 
     return 0;
 }
