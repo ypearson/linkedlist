@@ -52,6 +52,7 @@ all: clean $(TARGET)
 
 $(TARGET): $(OBJ)
 	$(CC) $(LDFLAGS) $^ -o $@
+	./$(TARGET)
 
 clean:
 	@find $(TOP) -type f -name "*.o"  -delete

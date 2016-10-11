@@ -1,8 +1,4 @@
-
 #include "linkedlist.h"
-
-// void *malloc(size_t size);
-// void free(void *ptr);
 
 int ll_new (llnode_t **ll_ptr, int data)
 {
@@ -20,6 +16,8 @@ int ll_destroy (llnode_t **ll_ptr, int data)
 {
     llnode_t  * ll_p = *ll_ptr;
 
+    while(ll_remove(ll_p) >=0);
+
     return 0;
 }
 
@@ -36,7 +34,7 @@ int ll_add     (llnode_t **ll_ptr,  int data)
         ll_pv = ll_p;
         ll_p = ll_p->next;
     }
-    ll_pv->next = (llnode_t*) malloc( sizeof(llnode_t) );
+    ll_pv->next = (llnode_t*) malloc(sizeof(llnode_t));
 
     ll_p = (llnode_t*) ll_pv->next;
     ll_p->next = 0;
@@ -51,23 +49,9 @@ int ll_remove(llnode_t **ll_ptr)
     llnode_t  * ll_p = *ll_ptr;
     llnode_t  * ll_pv;
 
-    if(!ll_p)
+    if(!ll_p) // null list
     {
-        printf("%s\n", "empty" );
-        printf("%p\n", ll_p );
         return -1;
-    }
-    else
-    {
-        printf("%c", 'r');
-    }
-
-    if(!ll_p->previous)
-    {
-        printf("%s\n", "last one" );
-        *ll_ptr = 0;
-        free(ll_p);
-        return 0;
     }
 
     while(ll_p)
@@ -75,9 +59,19 @@ int ll_remove(llnode_t **ll_ptr)
         ll_pv = ll_p;
         ll_p = ll_p->next;
     }
-    ll_pv = ll_pv->previous;
-    free(ll_pv->next);
-    ll_pv->next = 0;
+    ll_p = ll_pv;
+
+    if(ll_p->previous) // more than one nodes
+    {
+        ll_pv = ll_p->previous;
+        free(ll_p);
+        ll_pv->next = 0;
+    }
+    else  // one node
+    {
+        free(ll_p);
+        *ll_ptr = 0;
+    }
 
     return 0;
 }

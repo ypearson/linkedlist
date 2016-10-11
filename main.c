@@ -26,8 +26,10 @@ int main(int argc, char **argv)
     ll_add(&node, 70);
     ll_print(&node);
 
-    ll_remove(&node);
-    ll_print(&node);
+    while(ll_remove(&node) >=0)
+    {
+        ll_print(&node);
+    }
 
     printf("%s\n", "Done.");
     return 0;
