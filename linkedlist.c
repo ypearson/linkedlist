@@ -6,7 +6,7 @@
 
 static llnode_t * m_linked_list;
 
-int ll_init(llnode_t *ll_ptr_t, int data)
+int ll_new (llnode_t *ll_ptr_t, int data)
 {
     m_linked_list = malloc(sizeof(llnode_t) );
     m_linked_list->data = data;
@@ -15,9 +15,26 @@ int ll_init(llnode_t *ll_ptr_t, int data)
 
     return 0;
 }
-int ll_add(llnode_t *ll_ptr_t)
+int ll_destroy (llnode_t *ll_ptr_t, int data)
 {
+    return 0;
+}
 
+int ll_add     (llnode_t *ll_ptr_t,  int data)
+{
+    llnode_t  * ll_p = m_linked_list;
+    llnode_t  * ll_pv;
+
+    while(ll_p->next)
+    {
+        ll_p++;
+    }
+    ll_p->next = malloc( sizeof(llnode_t) );
+
+    ll_pv = (llnode_t*) ll_p->next;
+    ll_pv->next = 0;
+    ll_pv->previous = (void *)ll_p;
+    ll_pv->data = data;
 
     return 0;
 
