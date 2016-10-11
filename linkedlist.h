@@ -15,9 +15,9 @@ typedef struct
 } llnode_t;
 
 int ll_new     (llnode_t **ll_ptr, int data);
-int ll_destroy (llnode_t *ll_ptr,  int data);
+int ll_destroy (llnode_t **ll_ptr, int data);
 int ll_add     (llnode_t **ll_ptr,  int data);
-int ll_remove  (llnode_t *ll_ptr);
+int ll_remove  (llnode_t **ll_ptr);
 int ll_print   (llnode_t **ll_ptr);
 
 
